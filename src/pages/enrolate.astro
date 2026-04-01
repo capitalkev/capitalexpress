@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.tsx';
+import EnrolateForm from '../components/EnrolateForm.tsx';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Enrólate">
+  <Navbar client:load isHome={false} />
+  
+  <main class="flex-grow">
+    <EnrolateForm client:visible />
+  </main>
+
+  <Footer />
+</Layout>
