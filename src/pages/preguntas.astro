@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Preguntas Frecuentes">
+  <Navbar isHome={false} />
+  
+  <main class="flex-grow">
+    <FAQ />
+  </main>
+
+  <Footer />
+</Layout>

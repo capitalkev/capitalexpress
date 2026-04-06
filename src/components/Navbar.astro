@@ -10,10 +10,11 @@ const { isHome = true } = Astro.props;
       </a>
 
       <nav class="hidden md:flex items-center gap-8">
-        <a href="/#contactanos" class="text-sm font-bold text-brand-primary hover:opacity-80 transition-colors">Contáctanos</a>
-        <a href="/#productos" class="text-sm font-bold text-brand-primary hover:opacity-80 transition-colors">Productos</a>
-        <a href="/#nosotros" class="text-sm font-bold text-brand-primary hover:opacity-80 transition-colors">Nosotros</a>
-        <a href="/#ventajas" class="text-sm font-bold text-brand-primary hover:opacity-80 transition-colors">Ventajas</a>
+        <a href="/#contactanos" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Contáctanos</a>
+        <a href="/#productos" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Productos</a>
+        <a href="/#nosotros" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Nosotros</a>
+        <a href="/#ventajas" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Ventajas</a>
+        <a href="/preguntas" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Preguntas frecuentes</a>
         <a href="/enrolate" class="px-6 py-2 rounded-full border-2 border-brand-primary text-brand-primary font-bold hover:bg-brand-primary hover:text-white transition-all duration-300">Enrolate</a>
       </nav>
 
@@ -28,6 +29,7 @@ const { isHome = true } = Astro.props;
     <a href="/#productos" class="text-base font-bold text-brand-primary mobile-link">Productos</a>
     <a href="/#nosotros" class="text-base font-bold text-brand-primary mobile-link">Nosotros</a>
     <a href="/#ventajas" class="text-base font-bold text-brand-primary mobile-link">Ventajas</a>
+    <a href="/preguntas" class="text-base font-bold text-brand-primary mobile-link">Preguntas frecuentes</a>
     <a href="/enrolate" class="w-full px-5 py-3 rounded-full bg-brand-primary text-white font-bold mt-2 text-center mobile-link">Enrolate</a>
   </div>
 </header>

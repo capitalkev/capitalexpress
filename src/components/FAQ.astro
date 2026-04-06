@@ -1,0 +1,136 @@
+---
+const faqs = [
+  {
+    question: "¿Qué es el Factoring?",
+    answer: "Es una alternativa de financiamiento para las empresas, donde se adelanta el pago de las facturas de ventas. Para esto se cede de forma electrónica las factura, y todo el proceso de cobranza a la empresa de factoring."
+  },
+  {
+    question: "¿Cuáles son los requisitos?",
+    answer: "Ser una empresa formal con ventas comprobables y facturas por cobrar a clientes solventes. Para más detalles, comunícate con nuestros asesores."
+  },
+  {
+    question: "¿En cuánto tiempo obtengo el dinero?",
+    answer: "Una vez aprobada la operación y cedida la factura correctamente, el desembolso se realiza en menos de 24 horas."
+  },
+  {
+    question: "¿Por qué confiar en Capital Express?",
+    answer: "Somos un grupo capacitado de profesionales y asesores con más de 12 años de experiencia en el sistema financiero, brindando un servicio ágil, transparente y a tu medida."
+  },
+  {
+    question: "¿Dónde puedo contactar a un ejecutivo?",
+    answer: "Puedes dejarnos tus datos en el formulario de la sección 'Contáctanos', o enviarnos un correo directamente a ventas@capitalexpress.pe."
+  },
+  {
+    question: "¿Cómo obtener o recuperar el acceso al portal de cliente?",
+    answer: "Por favor, comunícate con tu ejecutivo comercial asignado o envíanos un correo para que podamos ayudarte a restablecer tus credenciales de acceso de forma rápida y segura."
+  }
+];
+---
+
+<section id="preguntas-frecuentes" class="py-16 bg-[#F5F5F5]">
+    
+    <div class="text-center mb-16 bg-[white] p-16 pt-24">
+      <div class="flex justify-center mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-black">
+          <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <path d="M12 17h.01"/>
+        </svg>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-black tracking-tight">Preguntas frecuentes.</h2>
+    </div>
+
+    <div class="space-y-4 max-w-2xl mx-auto ">
+      {faqs.map((faq, index) => (
+        <button 
+          class="faq-btn w-full bg-white rounded-full shadow-sm hover:shadow-md border border-gray-100 py-4 px-8 flex justify-between items-center transition-all duration-300 transform hover:-translate-y-1"
+          data-question={faq.question}
+          data-answer={faq.answer}
+        >
+          <span class="text-brand-primary font-bold text-lg md:text-xl text-left">{faq.question}</span>
+          <span class="text-brand-primary font-bold text-2xl ml-4">→</span>
+        </button>
+      ))}
+    </div>
+
+
+  <div id="faq-modal" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm hidden items-center justify-center opacity-0 transition-opacity duration-300">
+    <div id="faq-modal-content" class="bg-white rounded-[2rem] p-8 md:p-12 max-w-2xl w-[90%] mx-4 relative transform scale-95 transition-transform duration-300 shadow-2xl">
+      <button id="faq-close" class="absolute top-6 right-6 text-black hover:text-brand-primary transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      
+      <div class="text-center mt-2">
+        <h3 id="modal-title" class="text-3xl font-extrabold text-brand-primary mb-6"></h3>
+        <p id="modal-answer" class="text-brand-secondary text-base md:text-lg leading-relaxed"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqBtns = document.querySelectorAll('.faq-btn');
+  const modal = document.getElementById('faq-modal');
+  const modalContent = document.getElementById('faq-modal-content');
+  const modalTitle = document.getElementById('modal-title');
+  const modalAnswer = document.getElementById('modal-answer');
+  const closeBtn = document.getElementById('faq-close');
+
+  function openModal(question: string, answer: string) {
+    if (modalTitle && modalAnswer && modal && modalContent) {
+      modalTitle.textContent = question;
+      modalAnswer.textContent = answer;
+      
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      
+      // Trigger animations
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.classList.add('opacity-100');
+        modalContent.classList.remove('scale-95');
+        modalContent.classList.add('scale-100');
+      }, 10);
+    }
+  }
+
+  function closeModal() {
+    if (modal && modalContent) {
+      modal.classList.remove('opacity-100');
+      modal.classList.add('opacity-0');
+      modalContent.classList.remove('scale-100');
+      modalContent.classList.add('scale-95');
+      
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 300);
+    }
+  }
+
+  // Bind events
+  faqBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const question = target.getAttribute('data-question') || '';
+      const answer = target.getAttribute('data-answer') || '';
+      openModal(question, answer);
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+
+  // Close when clicking outside the modal content
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+</script>

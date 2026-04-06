@@ -18,10 +18,53 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://tu-domin
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Capital Express",
+      "url": "https://www.capitalexpress.pe/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.capitalexpress.pe/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Capital Express",
+      "url": "https://www.capitalexpress.pe/",
+      "logo": "https://www.capitalexpress.pe/capitalexpress.png",
+      "image": "https://www.capitalexpress.pe/DSC_1638.png",
+      "description": "Soluciones financieras, Factoring y Confirming para pymes.",
+      "telephone": "+51-991-808-962",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Avenida Coronel Andrés Reyes N° 360, oficina 704, San Isidro",
+          "addressLocality": "Lima",
+          "addressCountry": "PE"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Nueva de Lyon N° 0145, piso 6, Providencia",
+          "addressLocality": "Santiago",
+          "addressCountry": "CL"
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/capitalexpress-servicios-financieros/",
+        "https://www.facebook.com/tu-facebook"
+      ]
+    }
+  ]
+</script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -31,7 +74,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://tu-domin
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/imagen-para-redes.jpg" /> </head>
+    <meta property="og:image" content="/logo.png" /> </head>
   <body class="bg-white font-sans text-brand-text selection:bg-brand-primary selection:text-white min-h-screen flex flex-col">
     <slot />
   </body>
