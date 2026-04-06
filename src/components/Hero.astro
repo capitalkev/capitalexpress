@@ -2,93 +2,99 @@
 // Definimos los datos de los 4 slides
 const slides = [
   {
-    title: "¿Necesitas capital <br/> para tu pyme?",
-    subtitle: "Acelera el flujo de caja de tu empresa",
-    img: "/trabajador.png", 
-    alt: "Hombre con delantal usando tablet"
-  },
-  {
-    title: "Mantén tus <br/> cuentas claras",
-    subtitle: "Simula con Capital Express.",
-    img: "/trabajador2.png", 
-    alt: "Mujer con saco amarillo revisando celular"
+    title: "¿Necesitas liquidez <br/> para tu pyme?",
+    subtitle: "En Capital Express te ayudamos.",
+    img: "/trabajador.png", // Mujer con laptop
+    alt: "Mujer con laptop"
   },
   {
     title: "Te otorgamos <br/> Factoring",
     subtitle: "Seguro y en menos de 24 hrs.",
-    img: "/trabajador3.png", 
-    alt: "Trabajador con casco y mascarilla"
+    img: "/trabajador2.png", // Trabajador
+    alt: "Trabajador con casco"
   },
   {
-    title: "Impulsa tu <br/> crecimiento",
-    subtitle: "Financiamiento a la medida de tu negocio.",
-    img: "/trabajador4.png",
-    alt: "Cuarta persona"
+    title: "Mantén tus <br/> cuentas claras",
+    subtitle: "Simula con Capital Express.",
+    img: "/trabajador3.png", // Mujer de amarillo
+    alt: "Mujer con saco amarillo revisando celular"
+  },
+  {
+    title: "¿Necesitas capital <br/> para tu pyme?",
+    subtitle: "Acelera el flujo de caja de tu empresa.",
+    img: "/trabajador4.png", // Hombre con delantal
+    alt: "Hombre con delantal"
   }
 ];
 ---
 
-<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-r from-red-50 to-[#F5F5F5] select-none">
+<section class="relative pt-32 pb-24 lg:pt-48 lg:pb-36 overflow-hidden bg-gradient-to-r from-[#FFF1F1] to-[#F5F5F5] select-none w-full">
   
-  <div class="hidden lg:flex flex-col gap-4 absolute left-6 top-1/2 -translate-y-1/2 z-20">
-    <a href="#" class="w-10 h-10 rounded-lg bg-brand-primary text-white flex items-center justify-center hover:opacity-80 transition-opacity">
+  <div class="hidden lg:flex flex-col gap-4 absolute left-6 top-1/2 -translate-y-1/2 z-30">
+    <a href="#" class="w-10 h-10 rounded-lg bg-brand-primary text-white flex items-center justify-center hover:opacity-80 transition-opacity shadow-md">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
     </a>
-    <a href="#" class="w-10 h-10 rounded-lg bg-brand-primary text-white flex items-center justify-center hover:opacity-80 transition-opacity">
+    <a href="#" class="w-10 h-10 rounded-lg bg-brand-primary text-white flex items-center justify-center hover:opacity-80 transition-opacity shadow-md">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
     </a>
   </div>
 
-  <div class="max-w-7xl mx-auto relative z-10">
-    <div id="hero-carousel" class="relative overflow-hidden touch-pan-y">
-      <div id="hero-track" class="flex transition-transform duration-500 ease-out w-full">
-        
-        {slides.map((slide) => (
-          <div class="w-full flex-shrink-0 grid lg:grid-cols-2 gap-12 items-center px-4 sm:px-6 lg:px-8">
+  
+
+  <div id="hero-carousel" class="w-full relative touch-pan-y cursor-grab active:cursor-grabbing z-10">
+    <div id="hero-track" class="flex transition-transform duration-500 ease-out w-full">
+      
+      {slides.map((slide) => (
+        <div class="w-full flex-shrink-0 flex justify-center items-center">
+          
+          <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-12 items-center px-4 sm:px-6 lg:px-8">
             
-            <div class="max-w-2xl pt-10 lg:pt-0">
+            <div class="max-w-2xl pt-10 lg:pt-0 pointer-events-none">
               <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-4 text-black tracking-tight" set:html={slide.title}></h1>
-              <p class="text-xl text-gray-600 mb-8 max-w-lg font-medium">{slide.subtitle}</p>
-              <div class="flex flex-wrap gap-4">
-                <a href="/enrolate" class="px-8 py-3 rounded-full bg-brand-primary text-white font-bold text-lg hover:opacity-90 transition-all flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 cursor-pointer">
+              <p class="text-xl text-brand-secondary mb-8 max-w-lg font-medium">{slide.subtitle}</p>
+              <div class="flex flex-wrap gap-4 pointer-events-auto">
+                <a href="/enrolate" class="px-8 py-3 rounded-full bg-brand-primary text-white font-bold text-lg hover:bg-red-600 transition-colors flex items-center gap-2 shadow-lg">
                   haz la prueba hoy
                 </a>
               </div>
             </div>
 
-            <div class="relative flex justify-end items-center">
+            <div class="relative flex justify-end items-center h-[400px] lg:h-[500px] pointer-events-none">
               
               <img 
                 src={slide.img} 
                 alt={slide.alt} 
-                class="relative z-10 object-contain drop-shadow-2xl pointer-events-none image-float"
+                class="relative z-10 h-[450px] lg:h-[550px] object-contain drop-shadow-2xl image-float"
               />
             </div>
           </div>
-        ))}
 
-      </div>
-    </div>
-
-    <div class="absolute bottom-[-30px] lg:bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-      {slides.map((_, index) => (
-        <button 
-          class={`carousel-dot w-3 h-3 rounded-full transition-all duration-300 ${index === 0 ? 'bg-brand-primary w-8' : 'bg-gray-300 hover:bg-gray-400'}`}
-          data-index={index}
-          aria-label={`Ir al slide ${index + 1}`}
-        ></button>
+        </div>
       ))}
+
     </div>
+  </div>
+
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+    {slides.map((_, index) => (
+      <button 
+        class={`carousel-dot w-2.5 h-2.5 rounded-full transition-colors duration-300 ${index === 0 ? 'bg-brand-primary' : 'bg-gray-300 hover:bg-gray-400'}`}
+        data-index={index}
+        aria-label={`Ir al slide ${index + 1}`}
+      ></button>
+    ))}
   </div>
 </section>
 
 <style>
+  /* Clases para recortar los círculos del logo */
   .clip-left { clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); }
   .clip-right { clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); }
 
+  /* Animación suave flotante para las imágenes */
   @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
     100% { transform: translateY(0px); }
   }
   .image-float {
@@ -97,30 +103,33 @@ const slides = [
 </style>
 
 <script>
-  // Lógica del carrusel (Vanilla JS)
+  // Lógica del carrusel MANUAL: Mouse Drag, Touch Swipe, Teclado y Flechas
   const track = document.getElementById('hero-track');
+  const carousel = document.getElementById('hero-carousel');
   const dots = document.querySelectorAll('.carousel-dot');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  
   let currentIndex = 0;
   const totalSlides = dots.length;
   
-  // Variables para gestos táctiles
+  // Variables de arrastre
   let startX = 0;
-  let currentTranslate = 0;
   let isDragging = false;
-  let autoPlayInterval;
 
+  // Función principal para mover el carrusel
   function updateSlider(index) {
     currentIndex = index;
-    // Mueve la pista
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    // Mueve la pista entera con porcentaje
+    if(track) track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
-    // Actualiza los puntos
+    // Actualiza colores de los puntos
     dots.forEach((dot, i) => {
       if (i === currentIndex) {
-        dot.classList.add('bg-brand-primary', 'w-8');
+        dot.classList.add('bg-brand-primary');
         dot.classList.remove('bg-gray-300');
       } else {
-        dot.classList.remove('bg-brand-primary', 'w-8');
+        dot.classList.remove('bg-brand-primary');
         dot.classList.add('bg-gray-300');
       }
     });
@@ -134,55 +143,53 @@ const slides = [
     updateSlider((currentIndex - 1 + totalSlides) % totalSlides);
   }
 
-  // Click en los puntos
+  // --- 1. EVENTOS DE LOS BOTONES (Flechas Laterales) ---
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+  // --- 2. EVENTOS DE MOUSE & TOUCH (Arrastrar) ---
+  if (carousel) {
+    // Desktop (Mouse)
+    carousel.addEventListener('mousedown', dragStart);
+    window.addEventListener('mouseup', dragEnd);
+    // Mobile (Touch)
+    carousel.addEventListener('touchstart', dragStart, { passive: true });
+    window.addEventListener('touchend', dragEnd);
+  }
+
+  function dragStart(e) {
+    isDragging = true;
+    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+  }
+
+  function dragEnd(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    
+    const endX = e.type.includes('mouse') ? e.pageX : e.changedTouches[0].clientX;
+    const diff = startX - endX;
+
+    // Si el movimiento del mouse/dedo es mayor a 50 píxeles, cambiamos de slide
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextSlide(); // Arrastró hacia la izquierda
+      else prevSlide();          // Arrastró hacia la derecha
+    }
+  }
+
+  // --- 3. EVENTOS DE TECLADO (Flechas) ---
+  document.addEventListener('keydown', (e) => {
+    // Solo permitir el teclado si el usuario está viendo la parte superior de la página
+    if(window.scrollY > 500) return; 
+
+    if (e.key === 'ArrowLeft') prevSlide();
+    else if (e.key === 'ArrowRight') nextSlide();
+  });
+
+  // --- 4. CLICKS EN LOS PUNTOS ---
   dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
       const index = parseInt((e.target as HTMLElement).dataset.index);
       updateSlider(index);
-      resetAutoPlay();
     });
   });
-
-  // --- Soporte para deslizar en móviles (Touch Events) ---
-  const carousel = document.getElementById('hero-carousel');
-
-  if (carousel) {
-    carousel.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-      resetAutoPlay(); // Pausar autoplay al tocar
-    }, { passive: true });
-
-    carousel.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-    }, { passive: true });
-
-    carousel.addEventListener('touchend', (e) => {
-      isDragging = false;
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-
-      // Si el deslizamiento es mayor a 50px
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          nextSlide(); // Deslizó hacia la izquierda
-        } else {
-          prevSlide(); // Deslizó hacia la derecha
-        }
-      }
-    });
-  }
-
-  // Autoplay (cambia cada 5 segundos)
-  function startAutoPlay() {
-    autoPlayInterval = setInterval(nextSlide, 5000);
-  }
-
-  function resetAutoPlay() {
-    clearInterval(autoPlayInterval);
-    startAutoPlay();
-  }
-
-  // Iniciar carrusel
-  startAutoPlay();
 </script>
