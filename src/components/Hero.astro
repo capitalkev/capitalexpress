@@ -2,29 +2,29 @@
 // Definimos los datos de los 4 slides
 const slides = [
   {
-    title: "¿Necesitas liquidez <br/> para tu pyme?",
-    subtitle: "En Capital Express te ayudamos.",
-    img: "/trabajador.png", // Mujer con laptop
-    alt: "Mujer con laptop"
-  },
-  {
     title: "Te otorgamos <br/> Factoring",
     subtitle: "Seguro y en menos de 24 hrs.",
-    img: "/trabajador2.png", // Trabajador
+    img: "/trabajador.png", // Trabajador
     alt: "Trabajador con casco"
-  },
-  {
-    title: "Mantén tus <br/> cuentas claras",
-    subtitle: "Simula con Capital Express.",
-    img: "/trabajador3.png", // Mujer de amarillo
-    alt: "Mujer con saco amarillo revisando celular"
   },
   {
     title: "¿Necesitas capital <br/> para tu pyme?",
     subtitle: "Acelera el flujo de caja de tu empresa.",
-    img: "/trabajador4.png", // Hombre con delantal
+    img: "/trabajador2.png", // Hombre con delantal
     alt: "Hombre con delantal"
-  }
+  },
+  {
+    title: "¿Necesitas liquidez <br/> para tu pyme?",
+    subtitle: "En Capital Express te ayudamos.",
+    img: "/trabajador3.png", // Mujer con laptop
+    alt: "Mujer con laptop"
+  },
+  {
+    title: "Mantén tus <br/> cuentas claras",
+    subtitle: "Simula con Capital Express.",
+    img: "/trabajador4.png", // Mujer de amarillo
+    alt: "Mujer con saco amarillo revisando celular"
+  },
 ];
 ---
 
@@ -39,40 +39,35 @@ const slides = [
     </a>
   </div>
 
-  
-
-  <div id="hero-carousel" class="w-full relative touch-pan-y cursor-grab active:cursor-grabbing z-10">
-    <div id="hero-track" class="flex transition-transform duration-500 ease-out w-full">
-      
-      {slides.map((slide) => (
-        <div class="w-full flex-shrink-0 flex justify-center items-center">
+  <div id="hero-carousel" class="w-full relative touch-pan-y cursor-grab active:cursor-grabbing z-10 grid">
+    
+    {slides.map((slide, index) => (
+      <div class={`hero-slide col-start-1 row-start-1 w-full flex justify-center items-center transition-opacity duration-700 ${index === 0 ? 'active opacity-100 z-10' : 'opacity-0 z-0'}`} data-index={index}>
+        
+        <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-12 items-center px-4 sm:px-6 lg:px-8">
           
-          <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-12 items-center px-4 sm:px-6 lg:px-8">
-            
-            <div class="max-w-2xl pt-10 lg:pt-0 pointer-events-none">
-              <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-4 text-black tracking-tight" set:html={slide.title}></h1>
-              <p class="text-xl text-brand-secondary mb-8 max-w-lg font-medium">{slide.subtitle}</p>
-              <div class="flex flex-wrap gap-4 pointer-events-auto">
-                <a href="/enrolate" class="px-8 py-3 rounded-full bg-brand-primary text-white font-bold text-lg hover:bg-red-600 transition-colors flex items-center gap-2 shadow-lg">
-                  haz la prueba hoy
-                </a>
-              </div>
-            </div>
-
-            <div class="relative flex justify-end items-center h-[400px] lg:h-[500px] pointer-events-none">
-              
-              <img 
-                src={slide.img} 
-                alt={slide.alt} 
-                class="relative z-10 h-[450px] lg:h-[550px] object-contain drop-shadow-2xl image-float"
-              />
+          <div class="slide-text max-w-2xl pt-10 lg:pt-0 pointer-events-auto transition-all duration-1000 ease-out transform -translate-x-16 opacity-0">
+            <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-4 text-black tracking-tight" set:html={slide.title}></h1>
+            <p class="text-xl text-brand-secondary mb-8 max-w-lg font-medium">{slide.subtitle}</p>
+            <div class="flex flex-wrap gap-4 pointer-events-auto">
+              <a href="/enrolate" class="px-8 py-3 rounded-full bg-brand-primary text-white font-bold text-lg hover:bg-red-600 transition-colors flex items-center gap-2 shadow-lg">
+                haz la prueba hoy
+              </a>
             </div>
           </div>
 
+          <div class="slide-image relative flex justify-end items-center h-[400px] lg:h-[500px] pointer-events-none transition-all duration-1000 ease-out transform translate-x-16 opacity-0">
+   
+            <img 
+              src={slide.img} 
+              alt={slide.alt} 
+              class="relative z-10 h-[450px] lg:h-[550px] object-contain drop-shadow-2xl image-float"
+            />
+          </div>
         </div>
-      ))}
 
-    </div>
+      </div>
+    ))}
   </div>
 
   <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
@@ -87,11 +82,23 @@ const slides = [
 </section>
 
 <style>
-  /* Clases para recortar los círculos del logo */
+  /* Animaciones de entrada del slide activo */
+  .hero-slide.active .slide-text,
+  .hero-slide.active .slide-image {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  /* Prevenir que slides invisibles sean clickeables */
+  .hero-slide:not(.active) {
+    pointer-events: none;
+  }
+
+  /* Recortes de los círculos del logo */
   .clip-left { clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); }
   .clip-right { clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); }
 
-  /* Animación suave flotante para las imágenes */
+  /* Animación de flote para imágenes */
   @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-8px); }
@@ -103,27 +110,31 @@ const slides = [
 </style>
 
 <script>
-  // Lógica del carrusel MANUAL: Mouse Drag, Touch Swipe, Teclado y Flechas
-  const track = document.getElementById('hero-track');
+  const slides = document.querySelectorAll('.hero-slide');
   const carousel = document.getElementById('hero-carousel');
   const dots = document.querySelectorAll('.carousel-dot');
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
   
   let currentIndex = 0;
-  const totalSlides = dots.length;
-  
-  // Variables de arrastre
+  const totalSlides = slides.length;
   let startX = 0;
   let isDragging = false;
 
-  // Función principal para mover el carrusel
-  function updateSlider(index) {
+  // Aseguramos el tipo "number" para el index
+  function updateSlider(index: number) {
     currentIndex = index;
-    // Mueve la pista entera con porcentaje
-    if(track) track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
-    // Actualiza colores de los puntos
+    slides.forEach((slide, i) => {
+      if (i === currentIndex) {
+        slide.classList.add('active', 'opacity-100', 'z-10');
+        slide.classList.remove('opacity-0', 'z-0');
+      } else {
+        slide.classList.remove('active', 'opacity-100', 'z-10');
+        slide.classList.add('opacity-0', 'z-0');
+      }
+    });
+    
     dots.forEach((dot, i) => {
       if (i === currentIndex) {
         dot.classList.add('bg-brand-primary');
@@ -140,55 +151,62 @@ const slides = [
   }
 
   function prevSlide() {
-    updateSlider((currentIndex - 1 + totalSlides) % totalSlides);
+    updateSlider((currentIndex - 1 + totalSlides) % totalSlides); 
   }
 
-  // --- 1. EVENTOS DE LOS BOTONES (Flechas Laterales) ---
   if (prevBtn) prevBtn.addEventListener('click', prevSlide);
   if (nextBtn) nextBtn.addEventListener('click', nextSlide);
 
-  // --- 2. EVENTOS DE MOUSE & TOUCH (Arrastrar) ---
   if (carousel) {
-    // Desktop (Mouse)
-    carousel.addEventListener('mousedown', dragStart);
-    window.addEventListener('mouseup', dragEnd);
-    // Mobile (Touch)
-    carousel.addEventListener('touchstart', dragStart, { passive: true });
-    window.addEventListener('touchend', dragEnd);
+    // Casteamos los eventos para evitar alertas de tipado al mezclarlos
+    carousel.addEventListener('mousedown', dragStart as EventListener);
+    window.addEventListener('mouseup', dragEnd as EventListener);
+    carousel.addEventListener('touchstart', dragStart as EventListener, { passive: true });
+    window.addEventListener('touchend', dragEnd as EventListener);
   }
 
-  function dragStart(e) {
+  // Le decimos a TS que el evento (e) será del ratón o de la pantalla táctil
+  function dragStart(e: MouseEvent | TouchEvent) {
     isDragging = true;
-    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-  }
-
-  function dragEnd(e) {
-    if (!isDragging) return;
-    isDragging = false;
-    
-    const endX = e.type.includes('mouse') ? e.pageX : e.changedTouches[0].clientX;
-    const diff = startX - endX;
-
-    // Si el movimiento del mouse/dedo es mayor a 50 píxeles, cambiamos de slide
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) nextSlide(); // Arrastró hacia la izquierda
-      else prevSlide();          // Arrastró hacia la derecha
+    // Evaluamos el tipo de evento y lo casteamos para acceder a pageX o touches
+    if (e.type.includes('mouse')) {
+      startX = (e as MouseEvent).pageX;
+    } else {
+      startX = (e as TouchEvent).touches[0].clientX;
     }
   }
 
-  // --- 3. EVENTOS DE TECLADO (Flechas) ---
-  document.addEventListener('keydown', (e) => {
-    // Solo permitir el teclado si el usuario está viendo la parte superior de la página
-    if(window.scrollY > 500) return; 
+  function dragEnd(e: MouseEvent | TouchEvent) {
+    if (!isDragging) return;
+    isDragging = false;
+    
+    let endX = 0;
+    if (e.type.includes('mouse')) {
+      endX = (e as MouseEvent).pageX;
+    } else {
+      endX = (e as TouchEvent).changedTouches[0].clientX;
+    }
+    
+    const diff = startX - endX;
 
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextSlide(); 
+      else prevSlide();          
+    }
+  }
+
+  // Le damos a e el tipo KeyboardEvent
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if(window.scrollY > 500) return; 
     if (e.key === 'ArrowLeft') prevSlide();
     else if (e.key === 'ArrowRight') nextSlide();
   });
 
-  // --- 4. CLICKS EN LOS PUNTOS ---
   dots.forEach(dot => {
-    dot.addEventListener('click', (e) => {
-      const index = parseInt((e.target as HTMLElement).dataset.index);
+    // Usamos (e: Event) y e.currentTarget, y le ponemos || '0' por si acaso viene vacío
+    dot.addEventListener('click', (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
+      const index = parseInt(target.dataset.index || '0', 10);
       updateSlider(index);
     });
   });

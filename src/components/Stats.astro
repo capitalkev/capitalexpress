@@ -1,8 +1,9 @@
 ---
+// Separamos los valores para que el script pueda animar solo el número
 const stats = [
-  { value: "US$ 700 MM+", label: "Millones financiados" },
-  { value: "180.000 +", label: "Facturas operadas" },
-  { value: "3.000 +", label: "Clientes" }
+  { prefix: "US$ ", target: 700, suffix: " MM+", label: "Millones financiados" },
+  { prefix: "", target: 180000, suffix: " +", label: "Facturas operadas" },
+  { prefix: "", target: 3000, suffix: " +", label: "Clientes" }
 ];
 ---
 <section class="relative z-20 -mt-16 mb-20 px-4">
@@ -10,10 +11,72 @@ const stats = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
       {stats.map((stat) => (
         <div class="text-center px-4 pt-6 md:pt-0 first:pt-0">
-          <h3 class="text-3xl md:text-4xl font-extrabold text-black mb-2">{stat.value}</h3>
+          <h3 
+            class="stat-counter text-3xl md:text-4xl font-extrabold text-black mb-2"
+            data-target={stat.target}
+            data-prefix={stat.prefix}
+            data-suffix={stat.suffix}
+          >
+            {stat.prefix}0{stat.suffix}
+          </h3>
           <p class="text-brand-primary font-medium text-xl">{stat.label}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  // Le decimos explícitamente a TS que "element" es un HTMLElement
+  function startCounter(element: HTMLElement) {
+    // Agregamos un valor por defecto ('0') por si acaso el atributo no existe
+    const targetAttr = element.getAttribute('data-target') || '0';
+    const target = parseInt(targetAttr, 10);
+    const prefix = element.getAttribute('data-prefix') || '';
+    const suffix = element.getAttribute('data-suffix') || '';
+    
+    const duration = 2000; 
+    let startTimestamp: number | null = null;
+
+    // Le decimos a TS que el timestamp es un número
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const currentVal = Math.floor(easeProgress * target);
+      const formattedNumber = currentVal.toLocaleString('es-CL');
+
+      element.innerText = `${prefix}${formattedNumber}${suffix}`;
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        element.innerText = `${prefix}${target.toLocaleString('es-CL')}${suffix}`;
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  }
+
+  // Aquí le indicamos a TypeScript de qué tipo son "entries" y "observer"
+  const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Aseguramos que el target es un elemento HTML
+        startCounter(entry.target as HTMLElement);
+        observer.unobserve(entry.target); 
+      }
+    });
+  };
+
+  const observerOptions = {
+    threshold: 0.5 
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+  document.querySelectorAll('.stat-counter').forEach(el => {
+    observer.observe(el);
+  });
+</script>
