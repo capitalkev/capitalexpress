@@ -1,0 +1,69 @@
+---
+const { isHome = true } = Astro.props;
+---
+
+<header id="navbar" class={`fixed top-0 w-full z-50 transition-all duration-300 ${!isHome ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center">
+      <a href="/" class="flex items-center gap-2">
+        <div class="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold text-xl">CE</div>
+        <span class="font-heading font-bold text-2xl tracking-tight text-brand-secondary">
+          capital<span class="text-brand-primary">express</span>
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="/#contactanos" class="text-sm font-bold text-brand-primary hover:opacity-80 transition-colors">Contáctanos</a>
+        <a href="/#productos" class="text-sm font-bold text-brand-primary hover:opacity-80 transition-colors">Productos</a>
+        <a href="/#nosotros" class="text-sm font-bold text-brand-primary hover:opacity-80 transition-colors">Nosotros</a>
+        <a href="/#ventajas" class="text-sm font-bold text-brand-primary hover:opacity-80 transition-colors">Ventajas</a>
+        <a href="/enrolate" class="px-6 py-2 rounded-full border-2 border-brand-primary text-brand-primary font-bold hover:bg-brand-primary hover:text-white transition-all duration-300">Enrolate</a>
+      </nav>
+
+      <button id="mobile-menu-btn" class="md:hidden text-brand-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 px-4 flex-col gap-4 md:hidden">
+    <a href="/#contactanos" class="text-base font-bold text-brand-primary mobile-link">Contáctanos</a>
+    <a href="/#productos" class="text-base font-bold text-brand-primary mobile-link">Productos</a>
+    <a href="/#nosotros" class="text-base font-bold text-brand-primary mobile-link">Nosotros</a>
+    <a href="/#ventajas" class="text-base font-bold text-brand-primary mobile-link">Ventajas</a>
+    <a href="/enrolate" class="w-full px-5 py-3 rounded-full bg-brand-primary text-white font-bold mt-2 text-center mobile-link">Enrolate</a>
+  </div>
+</header>
+
+<script>
+  // Script Vanilla para manejar el scroll y el menú móvil
+  const navbar = document.getElementById('navbar');
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const links = document.querySelectorAll('.mobile-link');
+  const isHome = navbar?.classList.contains('bg-transparent');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    menu?.classList.toggle('flex');
+  });
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      menu?.classList.remove('flex');
+    });
+  });
+
+  if (isHome) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar?.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+        navbar?.classList.remove('bg-transparent', 'py-5');
+      } else {
+        navbar?.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+        navbar?.classList.add('bg-transparent', 'py-5');
+      }
+    });
+  }
+</script>

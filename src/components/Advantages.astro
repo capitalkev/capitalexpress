@@ -1,0 +1,26 @@
+---
+const advantages = [
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`, desc: "Otorgamos liquidez a tu negocio, de manera rápida y eficaz." },
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>`, desc: "Optimizamos el uso de tu línea de crédito, mejorando tus costos financieros." },
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>`, desc: "Te ayudamos con temas administrativos como la cobranza y así liberar tu tiempo para que lo dediques a tu negocio." },
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`, desc: "Mejoramos tus índices de endeudamiento de cara al sistema financiero." }
+];
+---
+<section id="ventajas" class="py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-[#EAEAEA] rounded-[4rem] p-12 relative mt-10">
+      <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-white px-8 py-3 rounded-full shadow-sm border border-gray-100">
+        <span class="text-sm font-bold tracking-wider uppercase text-brand-secondary">NUESTRAS VENTAJAS</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 pt-8">
+        {advantages.map((adv) => (
+          <div class="text-center px-4">
+            <div class="text-brand-primary flex justify-center mb-6" set:html={adv.icon} />
+            <p class="text-brand-secondary text-sm leading-relaxed font-medium">{adv.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

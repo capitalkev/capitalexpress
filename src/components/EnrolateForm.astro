@@ -1,0 +1,86 @@
+---
+---
+<div class="pt-32 pb-24 bg-[#F5F5F5] min-h-screen flex flex-col">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 uppercase tracking-tight text-black">HAZTE CLIENTE</h1>
+      <p class="text-lg md:text-xl text-brand-secondary uppercase tracking-wide">¡DÉJANOS TUS DATOS PARA INICIAR TU PROCESO DE FACTORING!</p>
+    </div>
+
+    <form id="enrolate-form" class="bg-transparent p-4 md:p-8">
+      <div class="space-y-10">
+        <div class="relative">
+          <input type="text" name="empresa" required class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="Nombre Empresa *" />
+          <label class="absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">Nombre Empresa *</label>
+        </div>
+
+        <div class="relative">
+          <input type="text" name="ruc" required class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="RUC Empresa *" />
+          <label class="absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">RUC Empresa *</label>
+        </div>
+
+        <div class="relative">
+          <input type="text" name="usuarioSunat" required class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="Usuario SUNAT *" />
+          <label class="absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">Usuario SUNAT *</label>
+        </div>
+
+        <div class="relative">
+          <input type="password" name="passwordSunat" required class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="Contraseña SUNAT *" />
+          <label class="absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">Contraseña SUNAT *</label>
+        </div>
+
+        <div class="flex items-center gap-2 text-sm text-brand-secondary pt-2">
+          <input type="checkbox" name="privacy" required class="w-4 h-4 text-brand-primary rounded border-gray-400 focus:ring-brand-primary" />
+          <label class="cursor-pointer">Acepto la <a href="#" class="text-blue-500 hover:underline">política de privacidad</a>.</label>
+        </div>
+
+        <div class="pt-2">
+          <button id="enrolate-btn" type="submit" class="px-12 py-2 bg-black text-white rounded-full font-bold hover:bg-gray-800 transition-colors disabled:opacity-70">
+            Enrolate
+          </button>
+        </div>
+
+        <p id="enrolate-success" class="hidden text-green-600 font-medium bg-green-50 p-3 rounded-lg mt-4">¡Gracias! Hemos recibido tus datos.</p>
+        <p id="enrolate-error" class="hidden text-red-600 font-medium bg-red-50 p-3 rounded-lg mt-4">Hubo un error al enviar. Intenta nuevamente.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('enrolate-form') as HTMLFormElement;
+  const btn = document.getElementById('enrolate-btn') as HTMLButtonElement;
+  const successMsg = document.getElementById('enrolate-success');
+  const errorMsg = document.getElementById('enrolate-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    successMsg?.classList.add('hidden');
+    errorMsg?.classList.add('hidden');
+
+    const formData = new FormData(form);
+    const data: Record<string, any> = Object.fromEntries(formData.entries());
+    data.privacy = formData.get('privacy') === 'on';
+
+    try {
+      const res = await fetch('/api/enrolate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        successMsg?.classList.remove('hidden');
+        form.reset();
+      } else {
+        errorMsg?.classList.remove('hidden');
+      }
+    } catch (err) {
+      errorMsg?.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enrolate';
+    }
+  });
+</script>

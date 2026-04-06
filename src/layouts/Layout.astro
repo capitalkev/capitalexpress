@@ -1,21 +1,38 @@
 ---
-import "../index.css";
-const { title, description } = Astro.props;
+// Importamos tu CSS global
+import "../index.css"; 
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Plataforma de financiamiento y factoring para pymes. Acelera el flujo de caja de tu empresa." 
+} = Astro.props;
+
+// Construimos la URL canónica para el SEO
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://tu-dominio.com');
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
     <title>{title} | Capital Express</title>
     <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | Capital Express`} />
     <meta property="og:description" content={description} />
-  </head>
-  <body
-    class="bg-white font-sans text-brand-text selection:bg-brand-primary selection:text-white"
-  >
+    <meta property="og:image" content="/imagen-para-redes.jpg" /> </head>
+  <body class="bg-white font-sans text-brand-text selection:bg-brand-primary selection:text-white min-h-screen flex flex-col">
     <slot />
   </body>
 </html>

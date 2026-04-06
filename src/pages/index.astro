@@ -1,25 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.tsx';
-import Hero from '../components/Hero.tsx';
-import Stats from '../components/Stats.tsx';
-import Solutions from '../components/Solutions.tsx';
-import Advantages from '../components/Advantages.tsx';
-import About from '../components/About.tsx';
-import Contact from '../components/Contact.tsx';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import Solutions from '../components/Solutions.astro';
+import Advantages from '../components/Advantages.astro';
+import About from '../components/About.astro';
+import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Inicio">
-  <Navbar client:load isHome={true} />
+  <Navbar isHome={true} />
   
   <main>
-    <Hero client:visible />
-    <Stats client:visible />
-    <Solutions client:visible />
-    <Advantages client:visible />
-    <About client:visible />
-    <Contact client:visible />
+    <Hero />
+    <Stats />
+    <Solutions />
+    <Advantages />
+    <About />
+    <ContactForm />
   </main>
 
   <Footer />

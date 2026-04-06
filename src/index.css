@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700;6..12,800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-brand-text bg-white antialiased selection:bg-brand-primary selection:text-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-brand-secondary;
+  }
+}
+
+.hero-curve-bg {
+  background: radial-gradient(circle at 100% 50%, rgba(255, 58, 29, 0.05) 0%, transparent 50%);
+}
