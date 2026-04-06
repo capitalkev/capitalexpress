@@ -23,13 +23,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://tu-domin
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
-    <title>{title} | Capital Express</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={`${title} | Capital Express`} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/imagen-para-redes.jpg" /> </head>
   <body class="bg-white font-sans text-brand-text selection:bg-brand-primary selection:text-white min-h-screen flex flex-col">
