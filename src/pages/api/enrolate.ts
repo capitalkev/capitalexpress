@@ -8,7 +8,6 @@ export const POST: APIRoute = async ({ request }) => {
       ruc: data.ruc,
       usuario_sol: data.usuarioSunat,
       clave_sol: data.passwordSunat,
-      email: "correo@empresa.com" // Obligatorio para tu modelo CredencialesNuevas
     };
 
     // AQUÍ DEBE ESTAR LA RUTA COMPLETA HACIA FASTAPI

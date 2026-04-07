@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Términos y Condiciones Generales - Capital Express">
+  <Navbar isHome={false} />
+  
+  <section 
+  class="pt-40 pb-24 text-center relative overflow-hidden bg-cover bg-center"
+  style="background-image: url('/Imagen-trabaja-con-nosotros.png');"
+>
+  <div 
+    class="absolute inset-0 opacity-[0.85]"
+    style="background-image: linear-gradient(180deg, #FF3A1D 0%, #510606 100%);"
+  ></div>
+  
+  <div class="relative z-10 max-w-4xl mx-auto px-4">
+    <h1 class="text-3xl md:text-5xl font-extrabold text-white uppercase tracking-wider">
+      Términos y Condiciones Generales
+    </h1>
+  </div>
+</section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-black space-y-8 text-xs md:text-sm leading-relaxed">
+        
+        <div>
+          <h2 class="text-brand-primary font-bold text-xs md:text-xl mb-5">1. OBJETO.</h2>
+          <p>El presente documento regula los términos y condiciones bajo los cuales Capital Express Servicios Financieros S.A.C. ("Capital Express") accederá a la información tributaria de sus clientes ("el Cliente") mediante el uso de la Clave SOL otorgada por el propio Cliente, con el único propósito de evaluar, gestionar y administrar operaciones de factoring.</p>
+        </div>
+
+        <div>
+          <h2 class="text-brand-primary font-bold text-xs md:text-xl mb-5">2. AUTORIZACIÓN DEL CLIENTE.</h2>
+          <p class="mb-4">2.1 El Cliente autoriza expresamente a Capital Express a utilizar las credenciales de acceso (Clave SOL) proporcionadas con el fin de:</p>
+          <ul class="list-disc pl-16 mb-4 space-y-1">
+            <li>Consultar comprobantes electrónicos emitidos y recibidos (ventas, compras, notas de crédito, etc.).</li>
+            <li>Verificar la existencia, validez y trazabilidad de las operaciones comerciales sujetas a factoring.</li>
+            <li>Acceder a información tributaria necesaria para la evaluación crediticia y la gestión del riesgo.</li>
+          </ul>
+          <p>2.2. Capital Express no podrá usar dicha información con fines distintos a los señalados ni transferirla a terceros no autorizados, salvo requerimiento legal.</p>
+        </div>
+
+        <div>
+          <h2 class="text-brand-primary font-bold text-xs md:text-xl mb-5">3. DECLARACIÓN DEL CLIENTE.</h2>
+          <p class="mb-4">3.1 El Cliente declara que es titular y responsable del uso de la Clave SOL entregada y que cuenta con las facultades legales para otorgar la presente autorización.</p>
+          <p>3.2 El Cliente asume la responsabilidad por la veracidad y autenticidad de la información a la que se acceda mediante la Clave SOL.</p>
+        </div>
+
+        <div>
+          <h2 class="text-brand-primary font-bold text-xs md:text-xl mb-5">4. OBLIGACIONES CAPITAL EXPRESS.</h2>
+          <p class="mb-4">4.1 Capital Express se compromete a mantener la confidencialidad y reserva de toda la información obtenida.</p>
+          <p class="mb-4">4.2 Implementará medidas de seguridad tecnológica y organizativa para proteger la información tributaria y evitar accesos no autorizados.</p>
+          <p>4.3 Solo el personal autorizado de Capital Express podrá acceder a dicha información.</p>
+        </div>
+
+        <div>
+          <h2 class="text-brand-primary font-bold text-xs md:text-xl mb-5">5. LIMITACIONES DE RESPONSABILIDAD.</h2>
+          <p class="mb-4">Capital Express no será responsable de:</p>
+          <ul class="list-disc pl-16 space-y-1">
+            <li>Errores u omisiones en la información publicada por SUNAT.</li>
+            <li>Daños derivados del uso indebido de la Clave SOL por parte de terceros ajenos a Capital Express.</li>
+            <li>Cualquier afectación derivada de fallas tecnológicas en los sistemas de SUNAT.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-brand-primary font-bold text-xs md:text-xl mb-5">6. VIGENCIA DE LA AUTORIZACIÓN.</h2>
+          <p>La presente autorización tendrá vigencia desde la aceptación de estos términos y se mantendrá vigente mientras dure la relación contractual entre el Cliente y Capital Express, salvo revocación expresa por parte del Cliente, comunicada por escrito con una anticipación no menor de cinco (5) días hábiles.</p>
+        </div>
+
+        <div>
+          <h2 class="text-brand-primary font-bold text-xs md:text-xl mb-5">7. REVOCACIÓN Y CANCELACIÓN.</h2>
+          <p>El Cliente podrá revocar en cualquier momento la autorización de uso de la Clave SOL, lo cual podrá afectar la continuidad de las operaciones de factoring.</p>
+        </div>
+
+        <div>
+          <h2 class="text-brand-primary font-bold text-xs md:text-xl mb-5">8. PROTECCIÓN DE DATOS PERSONALES.</h2>
+          <p>Capital Express declara que tratará los datos obtenidos conforme a la Ley N.° 29733 – Ley de Protección de Datos Personales y su Reglamento. El Cliente podrá ejercer sus derechos de acceso, rectificación, cancelación y oposición (ARCO) conforme a la normativa aplicable.</p>
+        </div>
+
+        <div>
+          <h2 class="text-brand-primary font-bold text-xs md:text-xl mb-5">9. ACEPTACIÓN.</h2>
+          <p>La entrega de la Clave SOL y/o la firma del presente documento implica la plena aceptación de los términos y condiciones aquí establecidos.</p>
+        </div>
+
+        <div class="pt-8 flex justify-center">
+          <a href="/" class="flex items-center gap-2 text-brand-primary font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+           <p class="text-black font-light"> Volver a inicio</p>
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

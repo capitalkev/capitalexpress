@@ -2,17 +2,29 @@
 const { isHome = true } = Astro.props;
 ---
 
-<header id="navbar" class={`fixed top-0 w-full z-50 transition-all duration-300 ${!isHome ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+<header id="navbar" class="fixed top-0 w-full z-50 bg-white shadow-sm border-b border-gray-100 py-3 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center">
-      <a href="/" class="flex items-center gap-2">
-        <img src="/capitalexpress.png" alt="Capital Express Logo" class="h-12 w-auto">
-      </a>
+      
+      <div class="flex items-center gap-4 sm:gap-6">
+        <a href="/" class="flex items-center">
+          <img src="/capitalexpress.png" alt="Capital Express Logo" class="h-10 sm:h-12 w-auto">
+        </a>
+        
+        <div class="flex items-center gap-3 border-l border-gray-200 pl-4 sm:pl-6">
+          <a href="https://capitalexpress.cl" target="_blank" class="hover:opacity-75 transition-opacity" title="Capital Express Chile">
+            <img src="/chile.png" alt="Chile" class="h-4 sm:h-5 w-auto rounded-[2px] shadow-sm">
+          </a>
+          <a href="https://capitalexpress.pe" target="_blank" class="hover:opacity-75 transition-opacity" title="Capital Express Perú">
+            <img src="/peru.png" alt="Perú" class="h-4 sm:h-5 w-auto rounded-[2px] shadow-sm">
+          </a>
+        </div>
+      </div>
 
       <nav class="hidden md:flex items-center gap-8">
         <a href="/#contactanos" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Contáctanos</a>
         <a href="/#productos" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Productos</a>
-        <a href="/#nosotros" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Nosotros</a>
+        <a href="/nosotros" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Nosotros</a>
         <a href="/#ventajas" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Ventajas</a>
         <a href="/preguntas" class="text-sm font-bold text-brand-primary hover:border-b-2 transition-colors border-brand-primary pb-1">Preguntas frecuentes</a>
         <a href="/enrolate" class="px-6 py-2 rounded-full border-2 border-brand-primary text-brand-primary font-bold hover:bg-brand-primary hover:text-white transition-all duration-300">Enrolate</a>
@@ -24,10 +36,10 @@ const { isHome = true } = Astro.props;
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 px-4 flex-col gap-4 md:hidden">
+  <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 px-4 flex-col gap-4 md:hidden border-t border-gray-100">
     <a href="/#contactanos" class="text-base font-bold text-brand-primary mobile-link">Contáctanos</a>
     <a href="/#productos" class="text-base font-bold text-brand-primary mobile-link">Productos</a>
-    <a href="/#nosotros" class="text-base font-bold text-brand-primary mobile-link">Nosotros</a>
+    <a href="/nosotros" class="text-base font-bold text-brand-primary mobile-link">Nosotros</a>
     <a href="/#ventajas" class="text-base font-bold text-brand-primary mobile-link">Ventajas</a>
     <a href="/preguntas" class="text-base font-bold text-brand-primary mobile-link">Preguntas frecuentes</a>
     <a href="/enrolate" class="w-full px-5 py-3 rounded-full bg-brand-primary text-white font-bold mt-2 text-center mobile-link">Enrolate</a>
@@ -35,12 +47,10 @@ const { isHome = true } = Astro.props;
 </header>
 
 <script>
-  // Script Vanilla para manejar el scroll y el menú móvil
-  const navbar = document.getElementById('navbar');
+  // Script Vanilla para manejar exclusivamente el menú móvil
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   const links = document.querySelectorAll('.mobile-link');
-  const isHome = navbar?.classList.contains('bg-transparent');
 
   btn?.addEventListener('click', () => {
     menu?.classList.toggle('hidden');
@@ -53,16 +63,4 @@ const { isHome = true } = Astro.props;
       menu?.classList.remove('flex');
     });
   });
-
-  if (isHome) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        navbar?.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
-        navbar?.classList.remove('bg-transparent', 'py-5');
-      } else {
-        navbar?.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
-        navbar?.classList.add('bg-transparent', 'py-5');
-      }
-    });
-  }
 </script>
