@@ -9,29 +9,30 @@
 
     <form id="enrolate-form" class="bg-transparent p-4 md:p-8">
       <div class="space-y-10">
+
         <div class="relative">
-          <input type="text" name="empresa" required class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="Nombre Empresa *" />
-          <label class="absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">Nombre Empresa *</label>
+          <input id="ruc" type="text" name="ruc" required spellcheck="false" autocomplete="off" data-gramm="false" class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="RUC Empresa *" />
+          <label for="ruc" class="pointer-events-none absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">RUC Empresa *</label>
         </div>
 
         <div class="relative">
-          <input type="text" name="ruc" required class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="RUC Empresa *" />
-          <label class="absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">RUC Empresa *</label>
+          <input id="usuarioSunat" type="text" name="usuarioSunat" required spellcheck="false" autocomplete="off" data-gramm="false" class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="Usuario SUNAT *" />
+          <label for="usuarioSunat" class="pointer-events-none absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">Usuario SUNAT *</label>
         </div>
 
         <div class="relative">
-          <input type="text" name="usuarioSunat" required class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="Usuario SUNAT *" />
-          <label class="absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">Usuario SUNAT *</label>
+          <input id="passwordSunat" type="password" name="passwordSunat" required spellcheck="false" autocomplete="off" data-gramm="false" class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="Contraseña SUNAT *" />
+          <label for="passwordSunat" class="pointer-events-none absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">Contraseña SUNAT *</label>
         </div>
 
         <div class="relative">
-          <input type="password" name="passwordSunat" required class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="Contraseña SUNAT *" />
-          <label class="absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">Contraseña SUNAT *</label>
+          <input id="email" type="email" name="email" required spellcheck="false" autocomplete="off" data-gramm="false" class="peer w-full border-b border-gray-400 bg-transparent py-2 text-brand-secondary focus:border-brand-primary focus:outline-none placeholder-transparent" placeholder="Correo Electrónico *" />
+          <label for="email" class="pointer-events-none absolute left-0 -top-3.5 text-sm text-brand-text transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-brand-primary">Correo Electrónico *</label>
         </div>
 
         <div class="flex items-center gap-2 text-sm text-brand-secondary pt-2">
-          <input type="checkbox" name="privacy" required class="w-4 h-4 text-brand-primary rounded border-gray-400 focus:ring-brand-primary" />
-          <label class="cursor-pointer">Acepto la <a href="#" class="text-blue-500 hover:underline">política de privacidad</a>.</label>
+          <input id="privacy" type="checkbox" name="privacy" required class="w-4 h-4 text-brand-primary rounded border-gray-400 focus:ring-brand-primary" />
+          <label for="privacy" class="cursor-pointer select-none">Acepto la <a href="#" class="text-blue-500 hover:underline">política de privacidad</a>.</label>
         </div>
 
         <div class="pt-2">
@@ -69,15 +70,25 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      });
-      if (res.ok) {
+      });     
+      
+      const result = await res.json();
+
+      if (res.ok && result.success) {
         successMsg?.classList.remove('hidden');
         form.reset();
       } else {
-        errorMsg?.classList.remove('hidden');
+        // Mostramos el error exacto que viene del backend
+        if (errorMsg) {
+          errorMsg.textContent = result.message || "Hubo un error al enviar. Intenta nuevamente.";
+          errorMsg.classList.remove('hidden');
+        }
       }
     } catch (err) {
-      errorMsg?.classList.remove('hidden');
+      if (errorMsg) {
+        errorMsg.textContent = "Error de conexión. Revisa tu internet e intenta nuevamente.";
+        errorMsg.classList.remove('hidden');
+      }
     } finally {
       btn.disabled = false;
       btn.textContent = 'Enrolate';
